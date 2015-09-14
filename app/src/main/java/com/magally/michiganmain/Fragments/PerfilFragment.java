@@ -23,6 +23,7 @@ public class PerfilFragment extends android.support.v4.app.Fragment {
     ImageView profileImgView;
     SharedPreferences sharedUserame;
     String usuario;
+    
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

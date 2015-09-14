@@ -3,7 +3,6 @@ package com.magally.michiganmain.Fragments;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,7 @@ public class PreguntasFragment extends android.support.v4.app.Fragment {
         rootview = inflater.inflate(R.layout.preguntas_layout,container,false);
         preguntasList = (ListView) rootview.findViewById(R.id.pregLV);
         username = sharedPref.getString("username","");
-        getPregTask = new GetPregTask(getActivity(),new GetPregTask.AsyncResponse() {
+       /* getPregTask = new GetPregTask(getActivity(),new GetPregTask.AsyncResponse() {
             @Override
             public void processFinish(Pregunta[] output) {
                 Log.d("FeedFragment", "on processFinish Method ! " + output.length);
@@ -41,7 +40,7 @@ public class PreguntasFragment extends android.support.v4.app.Fragment {
             }
         });
         getPregTask.execute();
-
+*/
 
         return rootview;
     }

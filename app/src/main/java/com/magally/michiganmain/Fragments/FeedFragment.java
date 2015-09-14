@@ -1,5 +1,6 @@
 package com.magally.michiganmain.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -8,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.magally.michiganmain.OtherUser;
 import com.magally.michiganmain.R;
 import com.magally.michiganmain.Tasks.GetFeedTask;
 
@@ -21,11 +24,13 @@ public class FeedFragment extends android.support.v4.app.Fragment {
     View rootview;
     ListAdapter adaptador;
     GetFeedTask getFeedTask;
+    TextView usuarioTV;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootview = inflater.inflate(R.layout.feed_layout,container,false);
         preguntasList = (ListView) rootview.findViewById(R.id.feedList);
+        usuarioTV = (TextView) rootview.findViewById(R.id.qUserTV);
         getFeedTask = new GetFeedTask(getActivity(),new GetFeedTask.AsyncResponse() {
             @Override
             public void processFinish(Pregunta[] output) {
@@ -37,6 +42,9 @@ public class FeedFragment extends android.support.v4.app.Fragment {
             }
         });
         getFeedTask.execute();
+
+
+
         //String[] preguntas ={"Uno","Dos","Tres","Cuatro","Cinco", "Seis"};
 
 

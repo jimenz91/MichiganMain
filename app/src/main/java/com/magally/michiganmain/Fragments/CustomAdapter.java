@@ -82,6 +82,10 @@ TODO: colocar los datos de reputacion en el TextView Correspondiente
 
 
 
+
+
+
+
         }
 
     }

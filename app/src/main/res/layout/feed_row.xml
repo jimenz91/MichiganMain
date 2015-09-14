@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/preguntaImg"
+        android:src="@drawable/prueba"
+        android:padding="5dp"
+        android:focusable="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Enunciado"
+        android:id="@+id/enunciadoFeed"
+        android:padding="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/qUserTV"
+        android:layout_toRightOf="@+id/preguntaImg"
+        android:layout_toEndOf="@+id/preguntaImg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Username"
+        android:id="@+id/qUserTV"
+        android:layout_below="@+id/preguntaImg"
+        android:layout_toLeftOf="@+id/enunciadoFeed"
+        android:layout_toStartOf="@+id/enunciadoFeed" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:id="@+id/plusBtn"
+        android:layout_below="@+id/enunciadoFeed"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:id="@+id/minusBtn"
+        android:layout_alignBottom="@+id/plusBtn"
+        android:layout_toRightOf="@+id/plusBtn"
+        android:layout_toEndOf="@+id/plusBtn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="0 Respuestas"
+        android:id="@+id/numRespuestasTV"
+        android:layout_below="@+id/plusBtn"
+        android:layout_toRightOf="@+id/plusBtn"
+        android:layout_toEndOf="@+id/plusBtn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Reputación"
+        android:id="@+id/repTV"
+        android:layout_below="@+id/enunciadoFeed"
+        android:layout_toRightOf="@+id/preguntaImg"
+        android:layout_toEndOf="@+id/preguntaImg"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp" />
+
+</RelativeLayout>

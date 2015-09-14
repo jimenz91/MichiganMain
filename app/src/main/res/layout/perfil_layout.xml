@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:id="@+id/profileImgView"
+        android:src="@drawable/silhouette"
+        android:layout_marginTop="54dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/profileNameTxt"
+        android:id="@+id/profileNameTxt"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/profileImgView"
+        android:layout_alignStart="@+id/profileImgView"
+        android:layout_alignRight="@+id/profileImgView"
+        android:layout_alignEnd="@+id/profileImgView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/profileCorreoTxt"
+        android:id="@+id/profileCorreoTxt"
+        android:layout_below="@+id/profileImgView"
+        android:layout_alignLeft="@+id/profileImgView"
+        android:layout_alignStart="@+id/profileImgView"
+        android:layout_alignRight="@+id/profileImgView"
+        android:layout_alignEnd="@+id/profileImgView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Carrera"
+        android:id="@+id/profileCarreraTxt"
+        android:layout_below="@+id/profileCorreoTxt"
+        android:layout_alignLeft="@+id/profileCorreoTxt"
+        android:layout_alignStart="@+id/profileCorreoTxt"
+        android:layout_alignRight="@+id/profileCorreoTxt"
+        android:layout_alignEnd="@+id/profileCorreoTxt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/reputacionTxtView"
+        android:id="@+id/reputacionTxTView"
+        android:layout_below="@+id/profileCarreraTxt"
+        android:layout_alignLeft="@+id/profileCarreraTxt"
+        android:layout_alignStart="@+id/profileCarreraTxt"
+        android:layout_alignRight="@+id/profileCarreraTxt"
+        android:layout_alignEnd="@+id/profileCarreraTxt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Usuario"
+        android:id="@+id/profileUserTV"
+        android:layout_below="@+id/reputacionTxTView"
+        android:layout_alignLeft="@+id/reputacionTxTView"
+        android:layout_alignStart="@+id/reputacionTxTView" />
+
+</RelativeLayout>

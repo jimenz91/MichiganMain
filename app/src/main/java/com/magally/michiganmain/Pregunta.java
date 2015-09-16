@@ -1,11 +1,9 @@
-package com.magally.michiganmain.Fragments;
+package com.magally.michiganmain;
 
 /**
  * Created by Magally on 13-09-2015.
  */
 public class Pregunta {
-    /*TODO: Agregar variable reputacion
-     */
     private int preguntaID;
     private String enunciado, foto, username, reputacion;
 

@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by Magally on 13-09-2015.
  */
-public class GetPregTask extends AsyncTask<Void,Void,Void> {
+public class GetMyQuestTask extends AsyncTask<Void,Void,Void> {
 
     public AsyncResponse delegate = null;
 
@@ -38,7 +38,7 @@ public class GetPregTask extends AsyncTask<Void,Void,Void> {
     ProgressDialog dialog;
 
 
-    public GetPregTask(Activity activity, AsyncResponse asyncResponse, String username) {
+    public GetMyQuestTask(Activity activity, AsyncResponse asyncResponse, String username) {
         parentActivity = activity;
         this.username = username;
         delegate = asyncResponse;

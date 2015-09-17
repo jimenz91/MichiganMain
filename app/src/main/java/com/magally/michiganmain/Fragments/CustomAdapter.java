@@ -1,6 +1,7 @@
 package com.magally.michiganmain.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,18 +12,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.magally.michiganmain.OtherUser;
+import com.magally.michiganmain.Pregunta;
 import com.magally.michiganmain.R;
 import com.squareup.picasso.Picasso;
 
+
+
 class CustomAdapter extends ArrayAdapter<Pregunta> {
-/*
-TODO: colocar los datos de reputacion en el TextView Correspondiente
- */
+
+
+
+    private Context mContext;
+
     CustomAdapter(Context context, Pregunta[] preguntas) {
         super(context, R.layout.feed_row,preguntas);
+        mContext = context;
     }
-
-
 
 
     @Override
@@ -31,7 +37,7 @@ TODO: colocar los datos de reputacion en el TextView Correspondiente
         LayoutInflater rowInflater =LayoutInflater.from(getContext());
         View customView = rowInflater.inflate(R.layout.feed_row, parent, false);
         ViewHolder v = new ViewHolder(customView);
-        Pregunta singlePregunta = getItem(position);
+        final Pregunta singlePregunta = getItem(position);
 
 
         v.enunciadoTextView.setText(singlePregunta.getEnunciado());
@@ -47,6 +53,18 @@ TODO: colocar los datos de reputacion en el TextView Correspondiente
 
         v.usuarioTextView.setText(singlePregunta.getUsername());
         v.repTV.setText(singlePregunta.getReputacion());
+
+        v.repTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: Asociar intent con la pregunta para sacar las respuestas que son
+                Intent answersI = new Intent(getContext(), Answers.class);
+
+                answersI.putExtra("preguntaID",singlePregunta.getPreguntaID());
+                mContext.startActivity(answersI);
+            }
+        });
+
         v.plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +76,18 @@ TODO: colocar los datos de reputacion en el TextView Correspondiente
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "-1", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        v.usuarioTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: Asociar intent con el usuario que es
+                Intent otherUI = new Intent(getContext(), OtherUser.class);
+                otherUI.putExtra("usuario",singlePregunta.getUsername());
+                mContext.startActivity(otherUI);
+                Toast.makeText(getContext(),"usuario",Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -79,11 +109,6 @@ TODO: colocar los datos de reputacion en el TextView Correspondiente
             plusButton = (Button)view.findViewById(R.id.plusBtn);
             minusButton = (Button)view.findViewById(R.id.minusBtn);
             repTV = (TextView)view.findViewById(R.id.repTV);
-
-
-
-
-
 
 
         }

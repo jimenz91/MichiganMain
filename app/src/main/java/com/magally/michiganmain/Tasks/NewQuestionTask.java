@@ -33,7 +33,7 @@ public class NewQuestionTask extends AsyncTask <Void,Void,Void> {
     ProgressDialog dialog;
 
 
-    public NewQuestionTask(Activity activity, String enunciado, String foto, long temaId, long usuarioId, String usernme) {
+    public NewQuestionTask(Activity activity, String enunciado, String foto, long temaId, long usuarioId, String username) {
         parentActivity = activity;
         this.enunciado = enunciado;
         this.foto = foto;
@@ -111,4 +111,29 @@ public class NewQuestionTask extends AsyncTask <Void,Void,Void> {
         }
         dialog.dismiss();
     }
+
+//    private String upload(File file, List<NameValuePair> params){
+//        JSONObject result;
+//        AsyncHttpClient client = new AsyncHttpClient();
+//        RequestParams requestParams = new RequestParams();
+//        requestParams.put("enunciado",enunciado);
+//        requestParams.put("tema_id",Long.toString(temaId));
+//        requestParams.put("usuario_id",Long.toString(usuarioId));
+//        requestParams.put("username",username);
+//        client.post(url_create_user,requestParams, new JsonHttpResponseHandler(){
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                //super.onSuccess(statusCode, headers, response);
+//
+//            }
+//        });
+//        try {
+//            requestParams.put("uploaded_file", file);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//    }
+
 }

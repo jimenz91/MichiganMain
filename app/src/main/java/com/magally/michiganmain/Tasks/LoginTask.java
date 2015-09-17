@@ -29,6 +29,7 @@ public class LoginTask extends AsyncTask<Void,Void,Void>{
     private static String url_create_user = "http://192.168.1.113/michigan_server/user_login.php";
     private static String LOG_TAG = "LoginTask";
     String usuario, contrasena, nombreCompleto, nombre, apellido, correo, carrera_id, reputacion, foto, errorMsg;
+    long usuarioId;
     JSONParser jsonParser = new JSONParser();
     Activity parentActivity;
     int success;
@@ -72,6 +73,7 @@ public class LoginTask extends AsyncTask<Void,Void,Void>{
                 //parentActivity.startActivity(i);
                 JSONArray jsonarray = json.getJSONArray("usuario");
                 JSONObject jsonObject = jsonarray.getJSONObject(0);
+                usuarioId = jsonObject.getLong("id");
                 nombre = jsonObject.getString("nombre");
                 apellido = jsonObject.getString("apellido");
                 correo = jsonObject.getString("correo");
@@ -101,6 +103,7 @@ public class LoginTask extends AsyncTask<Void,Void,Void>{
             sharedPref = parentActivity.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 
             SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putLong("uid",usuarioId);
             editor.putString("usuario", usuario);
             editor.putString("nombre", nombre);
             editor.putString("apellido", apellido);
@@ -108,7 +111,7 @@ public class LoginTask extends AsyncTask<Void,Void,Void>{
             editor.putString("correo", correo);
             editor.putString("foto", foto);
             editor.putString("carrera", Carreras.CARRERAS.get(carrera_id));
-            editor.putString("foto", foto);
+
             editor.apply();
             dialog.dismiss();
             Toast.makeText(parentActivity,"Sesion Iniciada" , Toast.LENGTH_SHORT).show();

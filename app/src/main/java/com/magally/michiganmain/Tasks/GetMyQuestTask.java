@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.magally.michiganmain.Fragments.Pregunta;
+import com.magally.michiganmain.Pregunta;
 import com.magally.michiganmain.JSONParser;
 
 import org.apache.http.NameValuePair;

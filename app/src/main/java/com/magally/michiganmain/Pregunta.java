@@ -5,7 +5,7 @@ package com.magally.michiganmain;
  */
 public class Pregunta {
     private int preguntaID;
-    private String enunciado, foto, username, reputacion;
+    private String enunciado, foto, username, reputacion,respuestaCount;
 
     public Pregunta(int preguntaID, String enunciado, String foto, String username, String reputacion) {
         this.preguntaID = preguntaID;

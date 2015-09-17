@@ -91,7 +91,7 @@ public class NewAnswerTask extends AsyncTask <Void,Void,Void> {
                 //finish();
             } else {
                 // failed to create product
-                Log.d(LOG_TAG, "Failed creating question, success = "+success);
+                Log.d(LOG_TAG, "Failed creating answer, success = "+success);
 
             }
         } catch (JSONException e) {
@@ -104,7 +104,7 @@ public class NewAnswerTask extends AsyncTask <Void,Void,Void> {
     protected void onPostExecute(Void aVoid) {
         //super.onPostExecute(aVoid);
         if (success==1){
-            Toast.makeText(parentActivity,"Pregunta creada", Toast.LENGTH_SHORT).show();
+            Toast.makeText(parentActivity,"Respuesta creada", Toast.LENGTH_SHORT).show();
         } else{
             Toast.makeText(parentActivity, "Operacion Fallida, Intente nuevamente",Toast.LENGTH_SHORT)
                     .show();

@@ -8,9 +8,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.magally.michiganmain.Materias;
 import com.magally.michiganmain.R;
+import com.magally.michiganmain.Respuesta;
+import com.magally.michiganmain.Tasks.QuestionSearchTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,36 +27,52 @@ import java.util.List;
 public class BuscarFragment extends android.support.v4.app.Fragment {
 
     View rootview;
-    Spinner spinner;
+    Spinner mateSpinner;
+    String materia, clave1, clave2, clave3;
     long carrera;
     Button buscarBtn;
-    EditText buscarET;
+    EditText buscarET1, buscarET2, buscarET3;
+    QuestionSearchTask questionSearchTask;
+    ListView respuestaList;
+    ListAdapter adaptador;
+    Respuesta[] respuestaArray;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootview = inflater.inflate(R.layout.buscar_layout,container,false);
 
         buscarBtn = (Button) rootview.findViewById(R.id.buscarBtn);
-        buscarET = (EditText) rootview.findViewById(R.id.buscarET);
+        buscarET1 = (EditText) rootview.findViewById(R.id.buscarET1);
+        buscarET2 = (EditText) rootview.findViewById(R.id.buscarET2);
+        buscarET3 = (EditText) rootview.findViewById(R.id.buscarET3);
+        mateSpinner = (Spinner) rootview.findViewById(R.id.buscarPregSpinner);
+        respuestaList = (ListView) rootview.findViewById(R.id.answersLV);
 
-        final List<String> spinnerArray = new ArrayList<String>();
-        spinnerArray.add("Telecomunicaciones");
-        spinnerArray.add("Informatica");
-        spinnerArray.add("Civil");
-        spinnerArray.add("Industrial");
-        spinnerArray.add("Administración");
-        spinnerArray.add("Contaduría");
-        spinnerArray.add("Economía");
-        spinnerArray.add("Comunicación Social");
-        spinnerArray.add("Psicología");
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, spinnerArray);
-
+        final List<String> SpinnerArray = new ArrayList<String>();
+        SpinnerArray.add(Materias.MATERIAS.get("2"));
+        SpinnerArray.add(Materias.MATERIAS.get("4"));
+        SpinnerArray.add(Materias.MATERIAS.get("5"));
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, SpinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner sCarreras = (Spinner) rootview.findViewById(R.id.buscarPregSpinner);
-        sCarreras.setAdapter(adapter);
+        mateSpinner.setAdapter(adapter);
 
-        //carrera = spinner.getSelectedItemId() + 1;
+        buscarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                clave1 = buscarET1.getText().toString();
+                clave2 = buscarET2.getText().toString();
+                clave3 = buscarET3.getText().toString();
+                materia = mateSpinner.getSelectedItem().toString();
+                Toast.makeText(getActivity(), materia, Toast.LENGTH_SHORT).show();
+
+
+                questionSearchTask.execute();
+
+
+
+            }
+        });
 
         return rootview;
     }

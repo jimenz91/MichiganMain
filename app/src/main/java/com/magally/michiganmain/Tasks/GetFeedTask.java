@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.magally.michiganmain.Fragments.Pregunta;
+import com.magally.michiganmain.Pregunta;
 import com.magally.michiganmain.JSONParser;
 
 import org.apache.http.NameValuePair;
@@ -38,10 +38,10 @@ public class GetFeedTask extends AsyncTask<Void,Void,Void> {
     ProgressDialog dialog;
 
 
-    public GetFeedTask(Activity activity, AsyncResponse asyncResponse) {
+    public GetFeedTask(Activity activity, AsyncResponse asyncResponse, String username) {
         parentActivity = activity;
         delegate = asyncResponse;
-        this.username = "empty";
+        this.username = username;
 
     }
 
@@ -124,6 +124,8 @@ public class GetFeedTask extends AsyncTask<Void,Void,Void> {
         }else{
             delegate.processFinish(preguntaArray);
         }
+
+
 
         dialog.dismiss();
         //return preguntaArray;

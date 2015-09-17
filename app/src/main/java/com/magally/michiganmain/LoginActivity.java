@@ -3,11 +3,10 @@ package com.magally.michiganmain;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.magally.michiganmain.Tasks.LoginTask;
 
@@ -16,7 +15,6 @@ public class LoginActivity extends ActionBarActivity {
 
     EditText userET, passET;
     String usuario,contrasena;
-
 
 
     @Override
@@ -29,6 +27,9 @@ public class LoginActivity extends ActionBarActivity {
 
         userET = (EditText) findViewById(R.id.loginUsET);
         passET = (EditText) findViewById(R.id.loginPasET);
+        
+        ImageView logoIV = (ImageView) findViewById(R.id.logoIV);
+
 
         iniSesionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,8 +37,8 @@ public class LoginActivity extends ActionBarActivity {
                 usuario = userET.getText().toString();
                 contrasena = passET.getText().toString();
                 new LoginTask(LoginActivity.this,usuario,contrasena).execute();
-                //Intent iSes = new Intent(getApplication(), MainActivity.class);
-                //startActivity(iSes);
+                Intent iSes = new Intent(getApplication(), MainActivity.class);
+                startActivity(iSes);
             }
         });
 
@@ -52,25 +53,6 @@ public class LoginActivity extends ActionBarActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-       // getMenuInflater().inflate(R.menu.menu_login, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

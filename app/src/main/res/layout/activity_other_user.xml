@@ -29,19 +29,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="ProfAlum"
-        android:id="@+id/profAlumTV"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Carrera"
         android:id="@+id/otherUserCTV"
-        android:layout_below="@+id/profAlumTV"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -1,6 +1,5 @@
 package com.magally.michiganmain.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -11,7 +10,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.magally.michiganmain.OtherUser;
+import com.magally.michiganmain.Pregunta;
 import com.magally.michiganmain.R;
 import com.magally.michiganmain.Tasks.GetFeedTask;
 
@@ -21,10 +20,13 @@ import com.magally.michiganmain.Tasks.GetFeedTask;
 public class FeedFragment extends android.support.v4.app.Fragment {
     Pregunta[] preguntaArray;
     ListView preguntasList;
+    String username;
     View rootview;
     ListAdapter adaptador;
     GetFeedTask getFeedTask;
     TextView usuarioTV;
+
+    //TODO: Filtro por Carrera
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,15 +42,9 @@ public class FeedFragment extends android.support.v4.app.Fragment {
                 preguntasList.setAdapter(adaptador);
 
             }
-        });
+        }, username);
         getFeedTask.execute();
 
-
-
-        //String[] preguntas ={"Uno","Dos","Tres","Cuatro","Cinco", "Seis"};
-
-
-        //preguntasList.setAdapter(adaptador);
 
 
 

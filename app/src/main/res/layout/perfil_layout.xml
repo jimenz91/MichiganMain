@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/profileNameTxt"
@@ -24,7 +24,7 @@
         android:layout_alignEnd="@+id/profileImgView" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/profileCorreoTxt"
@@ -32,11 +32,11 @@
         android:layout_below="@+id/profileImgView"
         android:layout_alignLeft="@+id/profileImgView"
         android:layout_alignStart="@+id/profileImgView"
-        android:layout_alignRight="@+id/profileImgView"
-        android:layout_alignEnd="@+id/profileImgView" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Carrera"
@@ -44,11 +44,11 @@
         android:layout_below="@+id/profileCorreoTxt"
         android:layout_alignLeft="@+id/profileCorreoTxt"
         android:layout_alignStart="@+id/profileCorreoTxt"
-        android:layout_alignRight="@+id/profileCorreoTxt"
-        android:layout_alignEnd="@+id/profileCorreoTxt" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/reputacionTxtView"
@@ -56,17 +56,19 @@
         android:layout_below="@+id/profileCarreraTxt"
         android:layout_alignLeft="@+id/profileCarreraTxt"
         android:layout_alignStart="@+id/profileCarreraTxt"
-        android:layout_alignRight="@+id/profileCarreraTxt"
-        android:layout_alignEnd="@+id/profileCarreraTxt" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Usuario"
         android:id="@+id/profileUserTV"
         android:layout_below="@+id/reputacionTxTView"
         android:layout_alignLeft="@+id/reputacionTxTView"
-        android:layout_alignStart="@+id/reputacionTxTView" />
+        android:layout_alignStart="@+id/reputacionTxTView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.magally.michiganmain;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -26,6 +27,7 @@ public class OtherUser extends ActionBarActivity {
     private TextView userTV;
     private TextView userCTV, userCarTV;
     private String usuario;
+    private ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,11 @@ public class OtherUser extends ActionBarActivity {
         RequestParams requestParams = new RequestParams();
         requestParams.put("username", usuario);
         AsyncHttpClient client = new AsyncHttpClient();
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Cargando...");
+        dialog.setIndeterminate(false);
+        dialog.setCancelable(true);
+        dialog.show();
         client.get(URL,requestParams,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -68,6 +75,7 @@ public class OtherUser extends ActionBarActivity {
                             .fit()
                             .centerCrop()
                             .into(userIV);}
+                    dialog.dismiss();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -8,7 +8,10 @@
         android:id="@+id/buscarET1"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/buscarBtn"
+        android:layout_alignEnd="@+id/buscarBtn"
+        android:hint="Palabras Clave" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -33,21 +36,5 @@
         android:id="@+id/buscarLV"
         android:layout_below="@+id/buscarBtn"
         android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/buscarET2"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/buscarET1"
-        android:layout_toEndOf="@+id/buscarET1" />
-
-    <EditText
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/buscarET3"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/buscarET2"
-        android:layout_toEndOf="@+id/buscarET2" />
 
 </RelativeLayout>

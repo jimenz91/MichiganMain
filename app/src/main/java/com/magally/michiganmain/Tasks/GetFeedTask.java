@@ -96,7 +96,8 @@ public class GetFeedTask extends AsyncTask<Void,Void,Void> {
                             enunciado,
                             foto,
                             username,
-                            reputacion);
+                            reputacion,
+                            jsonObject.getString("answer_count"));
                     Log.d("GetFeedTask", "Questions received: "+ i);
                 }
 

@@ -3,7 +3,6 @@ package com.magally.michiganmain.Tasks;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -11,7 +10,6 @@ import android.widget.Toast;
 
 import com.magally.michiganmain.Carreras;
 import com.magally.michiganmain.JSONParser;
-import com.magally.michiganmain.MainActivity;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -115,8 +113,9 @@ public class LoginTask extends AsyncTask<Void,Void,Void>{
             editor.apply();
             dialog.dismiss();
             Toast.makeText(parentActivity,"Sesion Iniciada" , Toast.LENGTH_SHORT).show();
-            Intent intent =  new Intent(parentActivity, MainActivity.class);
-            parentActivity.startActivity(intent);
+//            Intent intent =  new Intent(parentActivity, MainActivity.class);
+//            parentActivity.startActivity(intent);
+            parentActivity.finish();
         }else {
             dialog.dismiss();
             Toast.makeText(parentActivity,errorMsg , Toast.LENGTH_SHORT).show();

@@ -96,7 +96,8 @@ public class GetMyAnswerTask extends AsyncTask<Void,Void,Void> {
                             enunciado,
                             foto,
                             username,
-                            reputacion);
+                            reputacion,
+                            jsonObject.getString("answer_count"));
                     Log.d("GetPregTask", "Questions received: "+ i);
                 }
 

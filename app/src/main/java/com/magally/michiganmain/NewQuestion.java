@@ -82,6 +82,7 @@ public class NewQuestion extends ActionBarActivity {
 
         sharedPref = getApplication().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         usuario = sharedPref.getString("usuario", "");
+        usuario_id = sharedPref.getLong("uid",0);
 
         if (!hasCamera())
             tomarBtn.setEnabled(false);
@@ -100,6 +101,8 @@ public class NewQuestion extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 enunciado = enunPregET.getText().toString();
+                tema_id = getTemaID((String)temSpinner.getSelectedItem());
+
                 //new NewQuestionTask(NewQuestion.this, enunciado, foto, tema_id, usuario_id, usuario);
                 File file = new File(getPath(mPictureUri));
                 if(file.exists()) {
@@ -107,8 +110,9 @@ public class NewQuestion extends ActionBarActivity {
                 }else{
                     Log.d("NewQuestion","File not found");
                 }
-                Intent qMain = new Intent(getApplication(), MainActivity.class);
-                startActivity(qMain);
+//                Intent qMain = new Intent(getApplication(), MainActivity.class);
+//                startActivity(qMain);
+                finish();
             }
         });
 
@@ -186,6 +190,17 @@ public class NewQuestion extends ActionBarActivity {
         cursor.moveToFirst();
 
         return cursor.getString(column_index);
+    }
+
+    private long getTemaID(String tema){
+       switch(tema){
+           case "Derivación": return 3;
+           case "Optimización": return 4;
+           case "Límites": return 5;
+           case "LAnzamiento Horizontal": return 6;
+           case "Movimiento Circular": return 7;
+           default: return 3;
+       }
     }
 
 }

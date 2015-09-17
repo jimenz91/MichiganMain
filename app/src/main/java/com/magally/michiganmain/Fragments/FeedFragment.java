@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
@@ -33,10 +34,36 @@ public class FeedFragment extends android.support.v4.app.Fragment {
         rootview = inflater.inflate(R.layout.feed_layout,container,false);
         preguntasList = (ListView) rootview.findViewById(R.id.feedList);
         usuarioTV = (TextView) rootview.findViewById(R.id.qUserTV);
+        updateFeed();
+
+
+
+
+        return rootview;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+       updateFeed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_refresh){
+            updateFeed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void updateFeed() {
+        Log.d("FeedFragment", "on UpdateFeed()");
         getFeedTask = new GetFeedTask(getActivity(),new GetFeedTask.AsyncResponse() {
             @Override
             public void processFinish(Pregunta[] output) {
-                Log.d("FeedFragment", "on processFinish Method ! "+  output.length);
+                Log.d("FeedFragment", "on processFinish Method ! " + output.length);
                 preguntaArray = output;
                 adaptador = new CustomAdapter(getActivity(), preguntaArray);
                 preguntasList.setAdapter(adaptador);
@@ -44,10 +71,5 @@ public class FeedFragment extends android.support.v4.app.Fragment {
             }
         }, username);
         getFeedTask.execute();
-
-
-
-
-        return rootview;
     }
 }

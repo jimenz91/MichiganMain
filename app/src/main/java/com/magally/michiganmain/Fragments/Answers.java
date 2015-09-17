@@ -60,16 +60,16 @@ public class Answers extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answers);
        Intent intent = getIntent();
-       if(intent.hasExtra("preguntaID")) {
-           preguntaID = intent.getIntExtra("preguntaID", 0);
-       }
+
+           preguntaID = intent.getIntExtra("pregunta_id", 0);
+
         Log.d("Answers Activity", "onCreate Method");
 
         sharedPref = getApplication().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 
         username = sharedPref.getString("usuario","");
         usuarioId = sharedPref.getLong("uid",0);
-       // usuarioId = sharedPref.getLong("")
+
 
         answerET = (EditText) findViewById(R.id.answerET);
         answerBtn = (Button) findViewById(R.id.answerBtn);
@@ -129,7 +129,7 @@ public class Answers extends ActionBarActivity {
     }
 
     private void updateAnswerList() {
-        getAnswersTask = new GetAnswersTask(this, 2, new GetAnswersTask.AsyncResponse() {
+        getAnswersTask = new GetAnswersTask(this, preguntaID, new GetAnswersTask.AsyncResponse() {
             @Override
             public void processFinish(Respuesta[] output) {
                 Log.d("BuscarFragment", "on processFinish Method ! " + output.length);

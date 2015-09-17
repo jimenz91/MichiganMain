@@ -5,16 +5,26 @@ package com.magally.michiganmain;
  */
 public class Pregunta {
     private int preguntaID;
-    private String enunciado, foto, username, reputacion,respuestaCount;
+    private String enunciado;
+    private String foto;
+    private String username;
+    private String reputacion;
 
-    public Pregunta(int preguntaID, String enunciado, String foto, String username, String reputacion) {
+
+
+    private String respuestaCount;
+
+    public Pregunta(int preguntaID, String enunciado, String foto, String username, String reputacion, String respuestCount) {
         this.preguntaID = preguntaID;
         this.enunciado = enunciado;
         this.foto = foto;
         this.username = username;
         this.reputacion = reputacion;
+        this.respuestaCount = respuestCount;
     }
-
+    public String getRespuestaCount() {
+        return respuestaCount;
+    }
     public int getPreguntaID() {
         return preguntaID;
     }

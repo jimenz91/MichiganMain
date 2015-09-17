@@ -2,17 +2,20 @@ package com.magally.michiganmain;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.magally.michiganmain.Fragments.BuscarFragment;
 import com.magally.michiganmain.Fragments.FeedFragment;
@@ -34,11 +37,15 @@ public class MainActivity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private SharedPreferences sharedPrefs;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sharedPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+        username = sharedPrefs.getString("usuario", "");
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -115,10 +122,28 @@ public class MainActivity extends ActionBarActivity
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.main, menu);
+            MenuItem item = menu.findItem(R.id.action_sesion);
+            sharedPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+            username = sharedPrefs.getString("usuario", "");
+            if(username.equals("")||username.equals(null)){
+                item.setTitle("Iniciar Sesión");
+                invalidateOptionsMenu();
+            }else{
+                item.setTitle("Cerrar Sesión");
+                invalidateOptionsMenu();
+            }
+
             restoreActionBar();
             return true;
         }
+
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -134,8 +159,19 @@ public class MainActivity extends ActionBarActivity
         }
 
         if (id == R.id.action_sesion){
+            Log.d("MainActivity", "Username: "+username);
+            sharedPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+            username = sharedPrefs.getString("usuario", "");
+            if(username.equals("")||username.equals(null)){
             Intent ises = new Intent(this, LoginActivity.class);
             startActivity(ises);
+            }else{
+                sharedPrefs.edit().clear().apply();
+                item.setTitle("Iniciar Sesión");
+                invalidateOptionsMenu();
+                Toast.makeText(getApplicationContext(),"Sesion Cerrada",Toast.LENGTH_LONG).show();
+            }
+
             return true;
         }
 
@@ -145,6 +181,11 @@ public class MainActivity extends ActionBarActivity
         if (id == R.id.action_preferencias) {
             return true;
         }
+        if (id == R.id.action_new_question) {
+            Intent intent = new Intent(this, NewQuestion.class);
+            startActivity(intent);
+            return true;
+        } 
 
         return super.onOptionsItemSelected(item);
     }

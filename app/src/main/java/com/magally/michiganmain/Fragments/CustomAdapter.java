@@ -53,14 +53,14 @@ class CustomAdapter extends ArrayAdapter<Pregunta> {
 
         v.usuarioTextView.setText(singlePregunta.getUsername());
         v.repTV.setText(singlePregunta.getReputacion());
-
+        v.numRespuestaTextView.setText(singlePregunta.getRespuestaCount()+ " Respuestas");
         v.repTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: Asociar intent con la pregunta para sacar las respuestas que son
                 Intent answersI = new Intent(getContext(), Answers.class);
 
-                answersI.putExtra("preguntaID",singlePregunta.getPreguntaID());
+                answersI.putExtra("pregunta_id",singlePregunta.getPreguntaID());
                 mContext.startActivity(answersI);
             }
         });
@@ -90,7 +90,14 @@ class CustomAdapter extends ArrayAdapter<Pregunta> {
 
             }
         });
-
+        v.numRespuestaTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, Answers.class);
+                intent.putExtra("pregunta_id", singlePregunta.getPreguntaID());
+                mContext.startActivity(intent);
+            }
+        });
         return customView;
 
     }

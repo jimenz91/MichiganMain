@@ -39,6 +39,7 @@ public class LoginActivity extends ActionBarActivity {
                 new LoginTask(LoginActivity.this,usuario,contrasena).execute();
                 Intent iSes = new Intent(getApplication(), MainActivity.class);
                 startActivity(iSes);
+                finish();
             }
         });
 

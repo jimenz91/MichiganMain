@@ -42,7 +42,7 @@
             android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name=".Registrar"
+            android:name=".Register"
             android:label="@string/title_activity_registrar" >
         </activity>
         <activity

@@ -46,7 +46,7 @@ public class LoginActivity extends ActionBarActivity {
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iReg = new Intent(getApplication(), Registrar.class);
+                Intent iReg = new Intent(getApplication(), Register.class);
                 startActivity(iReg);
             }
         });

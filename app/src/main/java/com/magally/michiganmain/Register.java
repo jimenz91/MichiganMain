@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Registrar extends ActionBarActivity {
+public class Register extends ActionBarActivity {
 
     EditText nombreTxt, apellidoTxT, correoTxt, usuarioTxt, contrasenaTxt;
     Button regButton;
@@ -115,7 +115,7 @@ public class Registrar extends ActionBarActivity {
                 nombreCompleto = nombre+" "+apellido;
 
                 carrera = spinner.getSelectedItemId() + 1;
-                new NewUserTask(Registrar.this, nombre, apellido, correo, usuario, contrasena, carrera).execute();
+                new NewUserTask(Register.this, nombre, apellido, correo, usuario, contrasena, carrera).execute();
                 Intent iReg = new Intent(getApplication(), LoginActivity.class);
                 startActivity(iReg);
 

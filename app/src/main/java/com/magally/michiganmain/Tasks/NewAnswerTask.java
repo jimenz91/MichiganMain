@@ -63,7 +63,7 @@ public class NewAnswerTask extends AsyncTask <Void,Void,Void> {
         params.add(new BasicNameValuePair("respuesta", respuesta));
         params.add(new BasicNameValuePair("foto", foto));
         params.add(new BasicNameValuePair("pregunta_Id", Long.toString(preguntaId)));
-        params.add(new BasicNameValuePair("usuario_id",Long.toString(usuarioId)));
+        params.add(new BasicNameValuePair("username",Long.toString(usuarioId)));
         params.add(new BasicNameValuePair("username",username));
 
         // getting JSON Object

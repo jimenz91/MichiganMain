@@ -7,12 +7,11 @@
     tools:context="com.magally.michiganmain.LoginActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:id="@+id/logoIV"
-        android:src="@drawable/prueba"
-        android:layout_marginTop="46dp"
-        android:layout_alignParentTop="true"
+        android:src="@drawable/logo"
+        android:layout_above="@+id/loginUsET"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -55,9 +54,4 @@
         android:layout_alignStart="@+id/loginUsET"
         android:singleLine="false"
         android:hint="Contraseña" />
-    <ImageView
-        android:id="@+id/expanded_image2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible" />
 </RelativeLayout>

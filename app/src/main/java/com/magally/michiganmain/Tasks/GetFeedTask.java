@@ -30,6 +30,7 @@ public class GetFeedTask extends AsyncTask<Void,Void,Void> {
     private static String LOG_TAG = "GetFeedTask";
     JSONParser jsonParser = new JSONParser();
     String username, enunciado, foto,  errorMsg, reputacion;
+    long usuario_id;
     Pregunta[] preguntaArray;
     int preguntaID;
     Activity parentActivity;
@@ -38,10 +39,10 @@ public class GetFeedTask extends AsyncTask<Void,Void,Void> {
     ProgressDialog dialog;
 
 
-    public GetFeedTask(Activity activity, AsyncResponse asyncResponse, String username) {
+    public GetFeedTask(Activity activity, AsyncResponse asyncResponse, long username) {
         parentActivity = activity;
         delegate = asyncResponse;
-        this.username = username;
+        this.usuario_id = username;
 
     }
 
@@ -62,7 +63,7 @@ public class GetFeedTask extends AsyncTask<Void,Void,Void> {
         success=0;
         // Building Parameters
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("username", username));
+        params.add(new BasicNameValuePair("usuario_id", String.valueOf(usuario_id)));
 
         // getting JSON Object
         // Note that create product url accepts POST method

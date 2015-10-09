@@ -6,7 +6,7 @@
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:id="@+id/profileImgView"
-        android:src="@drawable/silhouette"
+        android:src="@drawable/realmadrid"
         android:layout_marginTop="54dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -30,10 +30,10 @@
         android:text="@string/profileCorreoTxt"
         android:id="@+id/profileCorreoTxt"
         android:layout_below="@+id/profileImgView"
-        android:layout_alignLeft="@+id/profileImgView"
-        android:layout_alignStart="@+id/profileImgView"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/profileImgView"
+        android:layout_alignStart="@+id/profileImgView" />
 
     <TextView
         android:layout_width="240dp"
@@ -70,5 +70,14 @@
         android:layout_alignStart="@+id/reputacionTxTView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        android:id="@+id/guardarBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/profileUserTV"
+        android:layout_alignEnd="@+id/profileUserTV" />
 
 </RelativeLayout>

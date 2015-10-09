@@ -12,11 +12,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.magally.michiganmain.OtherUser;
 import com.magally.michiganmain.Pregunta;
 import com.magally.michiganmain.R;
 import com.squareup.picasso.Picasso;
 
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 class CustomAdapter extends ArrayAdapter<Pregunta> {
@@ -24,7 +30,8 @@ class CustomAdapter extends ArrayAdapter<Pregunta> {
 
 
     private Context mContext;
-
+    private Pregunta pregunta;
+    private static final String URL_REPUTATION = "http://192.168.1.113/michigan_server/question_rep.php";
     CustomAdapter(Context context, Pregunta[] preguntas) {
         super(context, R.layout.feed_row,preguntas);
         mContext = context;
@@ -68,14 +75,17 @@ class CustomAdapter extends ArrayAdapter<Pregunta> {
         v.plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"+1",Toast.LENGTH_SHORT).show();
+
+                //Toast.makeText(getContext(),"+1",Toast.LENGTH_SHORT).show();
+                updateRep("up",singlePregunta);
             }
         });
 
         v.minusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "-1", Toast.LENGTH_SHORT).show();
+                updateRep("down",singlePregunta);
+                //Toast.makeText(getContext(), "-1", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -120,5 +130,43 @@ class CustomAdapter extends ArrayAdapter<Pregunta> {
 
         }
 
+    }
+
+    private void updateRep(final String rep, Pregunta question){
+        Log.d("CustomAdapter","in updateRep Method");
+        this.pregunta = question;
+
+        RequestParams params = new RequestParams();
+
+        params.put("qid",pregunta.getPreguntaID());
+        if (rep.equals("up")){
+            params.put("reputation","up");
+        } else{
+            params.put("reputation","down");
+        }
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.post(URL_REPUTATION,params,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try{
+                    if(response.getInt("success")==1){
+                        long reputacion = Long.valueOf(pregunta.getReputacion());
+                        if(rep.equals("up")) {
+
+                            pregunta.setReputacion(String.valueOf(++reputacion));
+                            notifyDataSetChanged();
+                        }else{
+                            pregunta.setReputacion(String.valueOf(--reputacion));
+                            notifyDataSetChanged();
+                        }
+                        //Toast.makeText(getContext(), "Reputacion actualizada", Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(getContext(), "No se pudo actualizar en estos momentos", Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

@@ -117,6 +117,7 @@ public class Register extends ActionBarActivity {
                 carrera = spinner.getSelectedItemId() + 1;
                 new NewUserTask(Register.this, nombre, apellido, correo, usuario, contrasena, carrera).execute();
                 Intent iReg = new Intent(getApplication(), LoginActivity.class);
+                iReg.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(iReg);
 
 

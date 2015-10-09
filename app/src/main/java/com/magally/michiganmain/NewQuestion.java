@@ -74,6 +74,7 @@ public class NewQuestion extends ActionBarActivity {
         temSpinArray.add(Temas.TEMAS.get("5"));
         temSpinArray.add(Temas.TEMAS.get("6"));
         temSpinArray.add(Temas.TEMAS.get("7"));
+        temSpinArray.add(Temas.TEMAS.get("8"));
 
         ArrayAdapter<String> adapters = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, temSpinArray);
 
@@ -199,6 +200,7 @@ public class NewQuestion extends ActionBarActivity {
            case "Límites": return 5;
            case "LAnzamiento Horizontal": return 6;
            case "Movimiento Circular": return 7;
+           case "Cónicas": return 8;
            default: return 3;
        }
     }

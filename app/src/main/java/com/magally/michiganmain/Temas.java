@@ -16,6 +16,7 @@ public class Temas {
         map.put("5","Límites");
         map.put("6","LAnzamiento Horizontal");
         map.put("7","Movimiento Circular");
+        map.put("8","Cónicas");
 
         TEMAS = Collections.unmodifiableMap(map);
     }

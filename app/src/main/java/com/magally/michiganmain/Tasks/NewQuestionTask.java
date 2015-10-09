@@ -63,7 +63,7 @@ public class NewQuestionTask extends AsyncTask <Void,Void,Void> {
         params.add(new BasicNameValuePair("enunciado", enunciado));
         params.add(new BasicNameValuePair("foto", foto));
         params.add(new BasicNameValuePair("tema_id", Long.toString(temaId)));
-        params.add(new BasicNameValuePair("usuario_id",Long.toString(usuarioId)));
+        params.add(new BasicNameValuePair("username",Long.toString(usuarioId)));
         params.add(new BasicNameValuePair("username",username));
 
         // getting JSON Object
@@ -118,7 +118,7 @@ public class NewQuestionTask extends AsyncTask <Void,Void,Void> {
 //        RequestParams requestParams = new RequestParams();
 //        requestParams.put("enunciado",enunciado);
 //        requestParams.put("tema_id",Long.toString(temaId));
-//        requestParams.put("usuario_id",Long.toString(usuarioId));
+//        requestParams.put("username",Long.toString(usuarioId));
 //        requestParams.put("username",username);
 //        client.post(url_create_user,requestParams, new JsonHttpResponseHandler(){
 //            @Override

@@ -37,8 +37,14 @@ public class MainActivity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private static final String FEED_FRAGMENT_TAG = "feed_fragment";
+    private static final String PREGUNTAS_FRAGMENT_TAG = "preguntas_fragment";
+    private static final String RESPUESTAS_FRAGMENT_TAG = "respuestas_fragment";
+    private static final String BUSCAR_FRAGMENT_TAG = "buscar_fragment";
+    private static final String PERFIL_FRAGMENT_TAG = "perfil_fragment";
     private SharedPreferences sharedPrefs;
     private String username;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,35 +61,60 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+
+
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
 
         Fragment objFragment = null;
-
+        sharedPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+        username = sharedPrefs.getString("usuario", "");
+        String fragment_tag = null;
         switch (position){
             case 0:
                 objFragment = new FeedFragment();
+                fragment_tag = FEED_FRAGMENT_TAG;
                 break;
             case 1:
-                objFragment = new PreguntasFragment();
+                if(username.equals("")||username.equals(null)) {
+                    Toast.makeText(this,"Debe iniciar sesión!", Toast.LENGTH_LONG).show();
+                    return;
+                }else{
+                    objFragment = new PreguntasFragment();
+                    fragment_tag = PREGUNTAS_FRAGMENT_TAG;
+                }
                 break;
             case 2:
-                objFragment = new RespuestasFragment();
+                if(username.equals("")||username.equals(null)) {
+                    Toast.makeText(this,"Debe iniciar sesión!", Toast.LENGTH_LONG).show();
+                    return;
+                }else{
+                    objFragment = new RespuestasFragment();
+                    fragment_tag = RESPUESTAS_FRAGMENT_TAG;
+                }
                 break;
             case 3:
                 objFragment = new BuscarFragment();
+                fragment_tag = BUSCAR_FRAGMENT_TAG;
                 break;
             case 4:
-                objFragment = new PerfilFragment();
+                if(username.equals("")||username.equals(null)) {
+                    Toast.makeText(this,"Debe iniciar sesión!", Toast.LENGTH_LONG).show();
+                    return;
+                }else{
+                    objFragment = new PerfilFragment();
+                    fragment_tag = PERFIL_FRAGMENT_TAG;
+                }
                 break;
         }
 
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, objFragment)
+                .replace(R.id.container, objFragment, fragment_tag)
                 .commit();
     }
 
@@ -152,7 +183,8 @@ public class MainActivity extends ActionBarActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        sharedPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+        username = sharedPrefs.getString("usuario", "");
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_example){
             return true;
@@ -160,16 +192,17 @@ public class MainActivity extends ActionBarActivity
 
         if (id == R.id.action_sesion){
             Log.d("MainActivity", "Username: "+username);
-            sharedPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
-            username = sharedPrefs.getString("usuario", "");
+
             if(username.equals("")||username.equals(null)){
             Intent ises = new Intent(this, LoginActivity.class);
+                ises.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(ises);
             }else{
                 sharedPrefs.edit().clear().apply();
                 item.setTitle("Iniciar Sesión");
                 invalidateOptionsMenu();
                 Toast.makeText(getApplicationContext(),"Sesion Cerrada",Toast.LENGTH_LONG).show();
+                ((FeedFragment)getSupportFragmentManager().findFragmentByTag(FEED_FRAGMENT_TAG)).updateFeed(0);
             }
 
             return true;
@@ -182,10 +215,15 @@ public class MainActivity extends ActionBarActivity
             return true;
         }
         if (id == R.id.action_new_question) {
-            Intent intent = new Intent(this, NewQuestion.class);
-            startActivity(intent);
+            if(username.equals("")||username.equals(null)) {
+                Toast.makeText(this,"Debe iniciar sesión!", Toast.LENGTH_LONG).show();
+            } else{
+                Intent intent = new Intent(this, NewQuestion.class);
+                startActivity(intent);
+            }
             return true;
-        } 
+        }
+
 
         return super.onOptionsItemSelected(item);
     }

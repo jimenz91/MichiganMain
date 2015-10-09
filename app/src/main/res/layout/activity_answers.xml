@@ -17,7 +17,6 @@
         android:layout_width="300dp"
         android:layout_height="75dp"
         android:id="@+id/answerET"
-        android:layout_below="@+id/answersLV"
         android:layout_alignRight="@+id/answersLV"
         android:layout_alignEnd="@+id/answersLV"
         android:layout_toEndOf="@+id/answerBtn"
@@ -25,7 +24,8 @@
         android:layout_alignLeft="@+id/answerBtn"
         android:layout_alignStart="@+id/answerBtn"
         android:inputType="text"
-        android:hint="Respuesta" />
+        android:hint="Respuesta"
+        android:layout_alignTop="@+id/answerIV" />
 
     <Button
         android:layout_width="wrap_content"
@@ -39,8 +39,8 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/answerIV"
-        android:src="@drawable/prueba"
-        android:layout_below="@+id/answersLV"
+        android:src="@drawable/addimage"
+        android:layout_above="@+id/answerBtn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

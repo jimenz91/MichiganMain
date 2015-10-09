@@ -64,4 +64,6 @@ public class Pregunta {
     public void setReputacion(String reputacion){
         this.reputacion = reputacion;
     }
+
+
 }

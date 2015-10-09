@@ -189,7 +189,7 @@ public class Answers extends ActionBarActivity {
                     if (success == 1) {
                         Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
                         answerET.setText("");
-                        answerIV.setImageResource(R.drawable.prueba);
+                        answerIV.setImageResource(R.drawable.addimage);
                         updateAnswerList();
                     } else{
                         Toast.makeText(getApplicationContext(),"Fail. Success: "+statusCode, Toast.LENGTH_LONG).show();

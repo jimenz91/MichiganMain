@@ -7,9 +7,9 @@
     tools:context="com.magally.michiganmain.OtherUser">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/prueba"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:src="@drawable/dragonball"
         android:id="@+id/otherUserIV"
         android:layout_marginTop="36dp"
         android:layout_alignParentTop="true"

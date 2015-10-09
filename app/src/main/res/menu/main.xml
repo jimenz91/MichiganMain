@@ -8,8 +8,6 @@
         />
     <item android:id="@+id/action_example" android:title="@string/action_example"
         />
-    <item android:id="@+id/action_preferencias" android:title="@string/action_preferencias"
-        android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_acerca_de" android:title="@string/acerca_de"
         android:orderInCategory="200" app:showAsAction="never" />
     <item android:id="@+id/action_sesion" android:title="@string/iniciar_sesion"

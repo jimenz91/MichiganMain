@@ -38,6 +38,7 @@ public class LoginActivity extends ActionBarActivity {
                 contrasena = passET.getText().toString();
                 new LoginTask(LoginActivity.this,usuario,contrasena).execute();
                 Intent iSes = new Intent(getApplication(), MainActivity.class);
+                iSes.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(iSes);
                 finish();
             }

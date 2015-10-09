@@ -29,7 +29,7 @@ public class FeedFragment extends android.support.v4.app.Fragment {
     GetFeedTask getFeedTask;
     TextView usuarioTV;
     SharedPreferences sharedPrefs;
-    String usuario;
+    long usuario;
 
     //TODO: Filtro por Carrera
 
@@ -39,20 +39,20 @@ public class FeedFragment extends android.support.v4.app.Fragment {
         preguntasList = (ListView) rootview.findViewById(R.id.feedList);
         usuarioTV = (TextView) rootview.findViewById(R.id.qUserTV);
         sharedPrefs = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        usuario = sharedPrefs.getString("usuario","");
+        usuario = sharedPrefs.getLong("uid",0);
         updateFeed(usuario);
 
 
-
+        setHasOptionsMenu(true);
         return rootview;
     }
 
     @Override
     public void onResume() {
-        super.onResume();
         sharedPrefs = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        usuario = sharedPrefs.getString("usuario","");
-       updateFeed(usuario);
+        usuario = sharedPrefs.getLong("uid",0);
+        updateFeed(usuario);
+        super.onResume();
     }
 
     @Override
@@ -60,14 +60,14 @@ public class FeedFragment extends android.support.v4.app.Fragment {
         int id = item.getItemId();
         if(id == R.id.action_refresh){
             sharedPrefs = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-            usuario = sharedPrefs.getString("usuario","");
+            usuario = sharedPrefs.getLong("uid",0);
             updateFeed(usuario);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void updateFeed(String usuario) {
+    public void updateFeed(long usuario) {
         Log.d("FeedFragment", "on UpdateFeed()");
         getFeedTask = new GetFeedTask(getActivity(),new GetFeedTask.AsyncResponse() {
             @Override

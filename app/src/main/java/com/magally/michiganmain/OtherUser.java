@@ -71,7 +71,7 @@ public class OtherUser extends ActionBarActivity {
                     Picasso.with(getApplicationContext())
                             .load(jsonObject.getString("foto"))
                             .placeholder(R.drawable.silhouette)
-                            .error(R.drawable.prueba)
+                            .error(R.drawable.dragonball)
                             .fit()
                             .centerCrop()
                             .into(userIV);}

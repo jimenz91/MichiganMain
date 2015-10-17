@@ -26,7 +26,7 @@ import org.json.JSONObject;
 /**
  * Created by Magally on 26-08-2015.
  */
-public class RespuestasFragment extends android.support.v4.app.Fragment {
+public class AnswersFragment extends android.support.v4.app.Fragment {
 
     View rootview;
     ListView preguntaList;

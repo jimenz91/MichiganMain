@@ -81,4 +81,7 @@ public class FeedFragment extends android.support.v4.app.Fragment {
         }, usuario);
         getFeedTask.execute();
     }
+
+
+
 }

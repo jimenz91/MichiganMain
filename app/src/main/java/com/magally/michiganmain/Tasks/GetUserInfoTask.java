@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -118,7 +119,11 @@ public class GetUserInfoTask extends AsyncTask <Void,Void,Void> {
             ((TextView)parentActivity.findViewById(R.id.reputacionTxTView)).setText(reputacion);
             ((TextView)parentActivity.findViewById(R.id.profileUserTV)).setText(username);
             if(!foto.equals(""))
-                Picasso.with(parentActivity).load(foto).placeholder(R.id.profileImgView);
+                Picasso.with(parentActivity)
+                        .load(foto)
+                        .placeholder(R.drawable.silhouette)
+                        .error(R.drawable.prueba)
+                        .into((ImageView)parentActivity.findViewById(R.id.profileImgView));
 
 
         } else{

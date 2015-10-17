@@ -1,13 +1,14 @@
 package com.magally.michiganmain;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.squareup.picasso.Picasso;
 
 import org.apache.http.Header;
 import org.json.JSONException;
@@ -29,7 +31,10 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -44,6 +49,8 @@ public class NewQuestion extends ActionBarActivity {
     SharedPreferences sharedPref;
     long tema_id = 3, usuario_id = 2;
     Uri mPictureUri;
+    private String mCurrentPhotoPath;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +100,16 @@ public class NewQuestion extends ActionBarActivity {
             public void onClick(View v) {
                 Intent camI = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 //camI.putExtra(MediaStore.EXTRA_OUTPUT, mPictureUri);
-                startActivityForResult(camI, REQUEST_IMAGE_CAPTURE);
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (photoFile!=null) {
+                    camI.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(photoFile));
+                    startActivityForResult(camI, REQUEST_IMAGE_CAPTURE);
+                }
             }
         });
 
@@ -105,7 +121,7 @@ public class NewQuestion extends ActionBarActivity {
                 tema_id = getTemaID((String)temSpinner.getSelectedItem());
 
                 //new NewQuestionTask(NewQuestion.this, enunciado, foto, tema_id, usuario_id, usuario);
-                File file = new File(getPath(mPictureUri));
+                File file = new File(mCurrentPhotoPath);
                 if(file.exists()) {
                     upload(file);
                 }else{
@@ -113,7 +129,7 @@ public class NewQuestion extends ActionBarActivity {
                 }
 //                Intent qMain = new Intent(getApplication(), MainActivity.class);
 //                startActivity(qMain);
-                finish();
+
             }
         });
 
@@ -126,13 +142,18 @@ public class NewQuestion extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap photo = (Bitmap) extras.get("data");
-            String result = MediaStore.Images.Media.insertImage(getContentResolver(), photo, "", "");
-            mPictureUri = Uri.parse(result);
-            tomarPregIV.setImageBitmap(photo);
-            Log.d("New Question: ", "Image Path: " + result);
-            Toast.makeText(getApplicationContext(), "Path: " + result, Toast.LENGTH_SHORT).show();
+//            Bundle extras = data.getExtras();
+//            Bitmap photo = (Bitmap) extras.get("data");
+//            String result = MediaStore.Images.Media.insertImage(getContentResolver(), photo, "", "");
+           // mPictureUri = Uri.parse(result);
+            Picasso.with(this)
+                    .load(new File(mCurrentPhotoPath))
+                    .placeholder(R.drawable.silhouette)
+                    .error(R.drawable.prueba)
+                    .fit()
+                    .into(tomarPregIV);
+            Log.d("New Question: ", "Image Path: " + mCurrentPhotoPath);
+            Toast.makeText(getApplicationContext(), "Path: " + mCurrentPhotoPath, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -144,7 +165,11 @@ public class NewQuestion extends ActionBarActivity {
         requestParams.put("tema_id", Long.toString(tema_id));
         requestParams.put("usuario_id", Long.toString(usuario_id));
         requestParams.put("username", usuario);
-
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Cargando Pregunta...");
+        dialog.setIndeterminate(false);
+        dialog.setCancelable(true);
+        dialog.show();
         try {
             requestParams.put("uploaded_file", file);
         } catch (FileNotFoundException e) {
@@ -169,13 +194,16 @@ public class NewQuestion extends ActionBarActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
+                dialog.dismiss();
+                finish();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 Log.d("NewQuestion", "client.post Failure SC: "+statusCode);
                 Toast.makeText(getApplicationContext(),"Fail. Status Code: "+statusCode, Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+                finish();
             }
         });
 
@@ -203,6 +231,24 @@ public class NewQuestion extends ActionBarActivity {
            case "Cónicas": return 8;
            default: return 3;
        }
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        //mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        mCurrentPhotoPath = image.getAbsolutePath();
+        return image;
     }
 
 }

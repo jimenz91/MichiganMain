@@ -18,7 +18,7 @@ import com.magally.michiganmain.Tasks.GetMyQuestTask;
 /**
  * Created by Magally on 26-08-2015.
  */
-public class PreguntasFragment extends android.support.v4.app.Fragment {
+public class QuestionsFragment extends android.support.v4.app.Fragment {
     Pregunta[] preguntaArray;
     ListView preguntasList;
     View rootview;

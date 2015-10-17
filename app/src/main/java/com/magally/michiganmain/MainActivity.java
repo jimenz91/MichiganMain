@@ -15,14 +15,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
-import com.magally.michiganmain.Fragments.BuscarFragment;
 import com.magally.michiganmain.Fragments.FeedFragment;
 import com.magally.michiganmain.Fragments.NavigationDrawerFragment;
-import com.magally.michiganmain.Fragments.PerfilFragment;
-import com.magally.michiganmain.Fragments.PreguntasFragment;
-import com.magally.michiganmain.Fragments.RespuestasFragment;
+import com.magally.michiganmain.Fragments.ProfileFragment;
+import com.magally.michiganmain.Fragments.QuestionsFragment;
+import com.magally.michiganmain.Fragments.AnswersFragment;
+import com.magally.michiganmain.Fragments.SearchFragment;
 
 
 public class MainActivity extends ActionBarActivity
@@ -44,6 +47,8 @@ public class MainActivity extends ActionBarActivity
     private static final String PERFIL_FRAGMENT_TAG = "perfil_fragment";
     private SharedPreferences sharedPrefs;
     private String username;
+    private ImageView zoomImageView;
+    private ListView mListView;
 
 
     @Override
@@ -62,9 +67,10 @@ public class MainActivity extends ActionBarActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-
+       // zoomImageView = (ImageView)findViewById(R.id.expanded_image);
 
     }
+
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -83,7 +89,7 @@ public class MainActivity extends ActionBarActivity
                     Toast.makeText(this,"Debe iniciar sesión!", Toast.LENGTH_LONG).show();
                     return;
                 }else{
-                    objFragment = new PreguntasFragment();
+                    objFragment = new QuestionsFragment();
                     fragment_tag = PREGUNTAS_FRAGMENT_TAG;
                 }
                 break;
@@ -92,12 +98,12 @@ public class MainActivity extends ActionBarActivity
                     Toast.makeText(this,"Debe iniciar sesión!", Toast.LENGTH_LONG).show();
                     return;
                 }else{
-                    objFragment = new RespuestasFragment();
+                    objFragment = new AnswersFragment();
                     fragment_tag = RESPUESTAS_FRAGMENT_TAG;
                 }
                 break;
             case 3:
-                objFragment = new BuscarFragment();
+                objFragment = new SearchFragment();
                 fragment_tag = BUSCAR_FRAGMENT_TAG;
                 break;
             case 4:
@@ -105,7 +111,7 @@ public class MainActivity extends ActionBarActivity
                     Toast.makeText(this,"Debe iniciar sesión!", Toast.LENGTH_LONG).show();
                     return;
                 }else{
-                    objFragment = new PerfilFragment();
+                    objFragment = new ProfileFragment();
                     fragment_tag = PERFIL_FRAGMENT_TAG;
                 }
                 break;
@@ -145,6 +151,18 @@ public class MainActivity extends ActionBarActivity
         actionBar.setTitle(mTitle);
     }
 
+    @Override
+    public void onBackPressed() {
+        zoomImageView = (ImageView)findViewById(R.id.expanded_image);
+        mListView = (ListView)findViewById(R.id.feedList);
+        if(zoomImageView!= null && zoomImageView.getVisibility()==View.VISIBLE){
+            zoomImageView.setVisibility(View.GONE);
+            ((ArrayAdapter)mListView.getAdapter()).notifyDataSetChanged();
+        }else {
+
+            super.onBackPressed();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

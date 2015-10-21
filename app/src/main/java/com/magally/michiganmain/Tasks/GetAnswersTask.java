@@ -36,6 +36,7 @@ public class GetAnswersTask extends AsyncTask<Void,Void,Void> {
     int success;
     private static final String TAG_SUCCESS = "success";
     ProgressDialog dialog;
+    private long reputacion;
 
 
     public GetAnswersTask(Activity activity, int preguntaID, AsyncResponse asyncResponse) {
@@ -88,7 +89,8 @@ public class GetAnswersTask extends AsyncTask<Void,Void,Void> {
                     respuesta = jsonObject.getString("respuesta");
                     preguntaID = jsonObject.getInt("aid");
                     foto = jsonObject.getString("foto");
-                    respuestaArray[i]= new Respuesta(preguntaID, respuesta, foto, username);
+                    reputacion = jsonObject.getLong("reputacion");
+                    respuestaArray[i]= new Respuesta(preguntaID, respuesta, foto, username, reputacion);
                     Log.d("GetAnswersTask", "Answers received: "+ i);
                 }
 

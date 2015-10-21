@@ -159,7 +159,7 @@ class CustomAdapter extends ArrayAdapter<Pregunta> {
         this.pregunta = question;
 
         RequestParams params = new RequestParams();
-
+        params.put("uid",pregunta.getUsername());
         params.put("qid",pregunta.getPreguntaID());
         if (rep.equals("up")){
             params.put("reputation","up");

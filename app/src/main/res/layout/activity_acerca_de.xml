@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="La aplicación Michigan es un proyecto desarrollado en el 2015 por un estudiante de ingeniería de la Universidad Católica Andrés Bello, como trabajo Especial de Grado. Pretende ser una herramienta para estudiantes universitarios, que mejore su desempeño académico y hábitos de estudio."
+        android:id="@+id/textView"
+
+        android:autoText="false"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="normal|bold|italic"
+        android:textIsSelectable="false"
+        android:gravity="fill_horizontal"
+        android:padding="5dp"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/textView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Para cualquier información: michiganapp@gmail.com"
+        android:id="@+id/textView2"
+        android:autoText="false"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="normal|bold|italic"
+        android:textIsSelectable="false"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="38dp"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView"
+        android:layout_alignLeft="@+id/imageView"
+        android:layout_alignStart="@+id/imageView" />
+
+</RelativeLayout>

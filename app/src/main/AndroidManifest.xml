@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -56,6 +57,14 @@
         <activity
             android:name=".Fragments.Answers"
             android:label="@string/title_activity_comments" >
+        </activity>
+        <activity
+            android:name=".AcercaDe"
+            android:label="@string/title_activity_acerca_de" >
+        </activity>
+        <activity
+            android:name=".Reputacion"
+            android:label="@string/title_activity_reputacion" >
         </activity>
     </application>
 

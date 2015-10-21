@@ -4,22 +4,32 @@ package com.magally.michiganmain;
  * Created by Magally on 16-09-2015.
  */
 public class Respuesta {
-    private int preguntaID;
+    private int respuestaID;
     private String foto, username, respuesta;
+    private long reputacion;
 
-    public Respuesta (int preguntaID, String respuesta, String foto, String username) {
-        this.preguntaID = preguntaID;
+    public Respuesta (int respuestaID, String respuesta, String foto, String username, long reputacion) {
+        this.respuestaID = respuestaID;
         this.respuesta = respuesta;
         this.foto = foto;
         this.username = username;
+        this.reputacion = reputacion;
     }
 
-    public int getPreguntaID() {
-        return preguntaID;
+    public long getReputacion() {
+        return reputacion;
     }
 
-    public void setPreguntaID(int preguntaID) {
-        this.preguntaID = preguntaID;
+    public void setReputacion(long reputacion) {
+        this.reputacion = reputacion;
+    }
+
+    public int getRespuestaID() {
+        return respuestaID;
+    }
+
+    public void setRespuestaID(int respuestaID) {
+        this.respuestaID = respuestaID;
     }
 
     public String getRespuesta() {

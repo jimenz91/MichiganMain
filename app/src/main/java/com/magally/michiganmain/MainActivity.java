@@ -49,6 +49,7 @@ public class MainActivity extends ActionBarActivity
     private String username;
     private ImageView zoomImageView;
     private ListView mListView;
+    private Fragment objFragment;
 
 
     @Override
@@ -75,7 +76,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
 
-        Fragment objFragment = null;
+        objFragment = null;
         sharedPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
         username = sharedPrefs.getString("usuario", "");
         String fragment_tag = null;
@@ -158,9 +159,15 @@ public class MainActivity extends ActionBarActivity
         if(zoomImageView!= null && zoomImageView.getVisibility()==View.VISIBLE){
             zoomImageView.setVisibility(View.GONE);
             ((ArrayAdapter)mListView.getAdapter()).notifyDataSetChanged();
-        }else {
+        }else if (objFragment instanceof FeedFragment){
 
             super.onBackPressed();
+        }else{
+            objFragment= new FeedFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, objFragment, FEED_FRAGMENT_TAG)
+                    .commit();
         }
     }
 
@@ -205,6 +212,8 @@ public class MainActivity extends ActionBarActivity
         username = sharedPrefs.getString("usuario", "");
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_example){
+            Intent iRep = new Intent(this, Reputacion.class);
+            startActivity(iRep);
             return true;
         }
 
@@ -227,6 +236,8 @@ public class MainActivity extends ActionBarActivity
         }
 
         if (id == R.id.action_acerca_de){
+            Intent iAcer = new Intent(this, AcercaDe.class);
+            startActivity(iAcer);
             return true;
         }
         if (id == R.id.action_preferencias) {

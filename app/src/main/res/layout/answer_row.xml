@@ -54,4 +54,24 @@
         android:layout_marginLeft="42dp"
         android:layout_marginStart="42dp" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:id="@+id/answerPlusButton"
+        android:layout_below="@+id/repTV2"
+        android:layout_alignLeft="@+id/repTV2"
+        android:layout_alignStart="@+id/repTV2" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:id="@+id/answerMinusButton"
+        android:layout_alignTop="@+id/answerPlusButton"
+        android:layout_alignRight="@+id/repTV2"
+        android:layout_alignEnd="@+id/repTV2" />
+
 </RelativeLayout>

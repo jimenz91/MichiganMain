@@ -27,5 +27,8 @@
     <string name="title_activity_other_user">Perfil Usuario</string>
     <string name="title_activity_new_question">Realizar pregunta</string>
     <string name="title_activity_comments">Respuestas</string>
+    <string name="title_activity_acerca_de">Acerca de..</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_reputacion">Reputación</string>
 
 </resources>
